@@ -3,5 +3,100 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "nxt-design-concept": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "sass"
+        }
+      },
+      "root": "projects/nxt-design-concept",
+      "sourceRoot": "projects/nxt-design-concept/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/nxt-design-concept",
+            "index": "projects/nxt-design-concept/src/index.html",
+            "browser": "projects/nxt-design-concept/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/nxt-design-concept/tsconfig.app.json",
+            "inlineStyleLanguage": "sass",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/nxt-design-concept/public"
+              }
+            ],
+            "styles": [
+              "projects/nxt-design-concept/src/styles.sass"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "nxt-design-concept:build:production"
+            },
+            "development": {
+              "buildTarget": "nxt-design-concept:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/nxt-design-concept/tsconfig.spec.json",
+            "inlineStyleLanguage": "sass",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/nxt-design-concept/public"
+              }
+            ],
+            "styles": [
+              "projects/nxt-design-concept/src/styles.sass"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
   }
 }
